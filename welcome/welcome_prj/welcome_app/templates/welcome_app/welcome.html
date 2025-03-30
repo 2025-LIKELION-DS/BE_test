@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>{{ entered_name }}님 반갑습니다!</h1>
+    <div>
+      당신의 생일은 {{ entered_year }}년 {{ entered_month }}월 {{ entered_day }}일 입니다.
+      <br />
+      <br />
+      당신의 나이는 {{ age }}세 입니다.
+    </div>
+    <br />
+    <a href="{% url 'welcome_app:index' %}">돌아가기</a>
+  </body>
+</html>
