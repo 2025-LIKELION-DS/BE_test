@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>방명록 작성</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">제출</button>
+    </form>
+    <h2>방명록 목록</h2>
+    <p>
+    {% for Guest in form1 %}
+        {{Guest.username}}
+        {{Guest.stdnum}}
+        {{Guest.message}}
+    </p>
+    {% empty %}
+        <p>방명록이 없습니다</p>
+    {% endfor %}
+</body>
+</html>
