@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>교수 목록</h2>
+    {% for professor in professors %}
+    <p>{{professor.name}} ({{professor.email}})</p>
+    {% empty %}
+    <p>등롣된 교수 목록이 없습니다.</p>
+    {% endfor %}
+  </body>
+</html>
