@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>강의 목록</h2>
+    {% for lecture1 in lectures %} 
+    <p>[ {{ lecture1.code }} ] {{ lecture1.title }} {{lecture1.professor.name }} <br>
+        수강생 목록 - 
+        {% for ls in lecture1.lecturestudent_set.all %}
+            {{ ls.student.student_id }} -  {{ ls.student.name }}
+        {% empty %}
+        (수강생 없음)
+        {% endfor %}
+    </p>
+    {% empty %}
+    등록된 강의가 없습니다. 
+    {% endfor %}
+</body>
+</html>
