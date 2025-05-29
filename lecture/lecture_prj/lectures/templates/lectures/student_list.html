@@ -8,7 +8,12 @@
   <body>
     <h2>학생 목록</h2>
     {% for student in students %}
-    <p>{{student.student_id}} - {{student.name}} > {{student.lecture.title}}</p>
+    <p>{{student.student_id}} - {{student.name}}</p>
+    {% for lec in student.lecture_student.all %}
+      <p>[{{lec.lecture.code}}] {{lec.lecture.title}} - 수강신청일 : {{lec.enrolled_at}}</p>
+    {% empty %}
+    (수강 중인 강의 없음)
+    {% endfor %}
     {% empty %}
     <p>등록된 학생이 없습니다.</p>
     {% endfor %}
