@@ -9,7 +9,13 @@
     <h2>학생 목록</h2><br><br>
 
     {% for student in students %}
-        <p>-{{ student.student_id }} {{ student.name }}: {{ student.lecture }}</p>
+        <p>-{{ student.student_id }} {{ student.name }}</p>
+        수강 강의 목록:<br>
+        {% for ls in student.lecturestudent_set.all %}
+            -{{ ls.lecture.code }} {{ ls.lecture.title }}- 수강신청일({{ ls.enrolled_at }})<br>
+        {% empty %}
+            수강 중인 강의가 없습니다.
+        {% endfor %}<br><hr>
     {% empty %}
         등록된 학생이 없습니다.
     {% endfor %}
