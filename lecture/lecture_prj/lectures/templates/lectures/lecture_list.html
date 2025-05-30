@@ -10,6 +10,15 @@
     {% for lecture in lectures %}
     <ul>
         <li>({{ lecture.code }}) {{ lecture.title }} - {{ lecture.professor.name }}</li>
+        수강생 목록:
+        <br/>
+        <ul style="list-style-type: circle;">
+        {% for student in lecture.students.all %}
+            <li>{{ student.student_id }} - {{ student.name }}</li>
+        {% empty %}
+            (수강생 없음)
+        {% endfor %}
+        </ul>
     </ul>
     {% empty %}
     등록된 강의가 없습니다.
