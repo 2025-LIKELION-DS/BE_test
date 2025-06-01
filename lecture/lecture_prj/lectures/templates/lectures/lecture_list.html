@@ -10,8 +10,14 @@
 
     {% for lecture in lectures %}
         <p>-{{ lecture.code }} {{ lecture.title }}- {{ lecture.professor }}</p>
+        수강생 목록:<br>
+        {% for student in students %}
+            -{{ student.student_id }} {{ student.name }}<br>
+        {% empty %}
+            수강 중인 학생이 없습니다.
+        {% endfor %}<br><hr>
     {% empty %}
-        등록된 강의의가 없습니다.
+        등록된 강의가 없습니다.
     {% endfor %}
 </body>
 </html>
