@@ -18,6 +18,13 @@ class Lecture(models.Model):
 class Student(models.Model):
     name=models.CharField(max_length=20)
     student_id=models.CharField(max_length=20, unique=True)
-    lecture=models.ForeignKey(to=Lecture, on_delete=models.CASCADE, related_name='student')
+    lecture=models.ManyToManyField(to=Lecture, through='LectureStudent', related_name='student')
     def __str__(self):
         return f'[{self.student_id}] {self.name}'
+
+class LectureStudent(models.Model):
+    lecture=models.ForeignKey(to=Lecture, on_delete=models.CASCADE, related_name='lecture_student')
+    student=models.ForeignKey(to=Student, on_delete=models.CASCADE, related_name='lecture_student')
+    enrolled_at=models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f'[{self.lecture.title}] {self.student.name}'
