@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>{{ book.title}} </h2>
+    <p>{{book.author}} </p>
+    <p> {{book.plot}} </p>
+
+
+    <h3>리뷰</h3>
+
+    {% if request.user == post.author %}
+        {% for review in book.reviews.all %}
+            <p>{{ review.writer }}: {{ review.content }} {{ review.created_at }}</p>
+            <hr>
+        {% empty %}
+            <p>리뷰가 존재하지 않습니다.</p>
+        {% endfor %}
+        <form method="POST" action="{% url 'books:create-review' book.id %}">
+            {% csrf_token %}
+            <textarea name="content" cols="30" rows="5"></textarea>
+            <button type="submit">리뷰 작성</button>
+        </form>
+    {% else %}
+    <a href="{% url 'accounts:login' %}">리뷰를 작성하려면 로그인하세요</a>
+    {% endif %}
+</body>
+</html>
