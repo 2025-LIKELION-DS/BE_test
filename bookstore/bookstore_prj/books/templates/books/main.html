@@ -19,7 +19,7 @@
     {% for book in books %}
         <a href = "{% url 'books:detail' book.id %}">{{ book.title }}</a>
         - {{ book.author }}<br>
-        줄거리 : {{ book.plot }}
+        줄거리 : {{ book.plot }}<br><br>
     {% empty %}
         도서가 없습니다
     {% endfor %}

@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 
 def main(request):
-    books = Book.objects.all().order_by('-id')
+    books = Book.objects.all().order_by('id')
     return render(request, 'books/main.html', {'books' :books })
 
 def detail(request, id):
