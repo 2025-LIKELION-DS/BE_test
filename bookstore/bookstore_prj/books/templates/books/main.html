@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if request.user.is_authenticated %}
+        {{ request.user.username }}
+        <a href="{% url 'accounts:logout' %}">로그아웃</a><br/>
+    {% else %}
+        <a href="{% url 'accounts:login' %}">로그인</a>
+        <a href="{% url 'accounts:signup' %}">회원가입</a>
+    {% endif %}
+<br/><br/>
+    {% for b in books %}
+    <a href="{% url 'books:detail' b.id %}"> {{ b.title }} </a>
+        - {{ b.author }}</p><br/>
+    <p>줄거리:{{ b.plot }}</p>
+    {% empty %}
+    도서 목록이 없습니다.
+    {% endfor %}
+</body>
+</html>
