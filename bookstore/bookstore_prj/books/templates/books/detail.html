@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{ book.title }}</h1>
+    <h2>{{ book.author }}</h2>
+    <h2>{{ book.plot }}</h2>
+    {% for r in book.review.all %}
+    {{ r.writer }} - {{ r.content }}
+    {% empty %}
+    리뷰가 존재하지않습니다
+    {% endfor %}
+    {% if request.user.is_authenticated %}
+    <form method="POST" action="{% url 'books:review' book.id %}">
+        {% csrf_token %}
+        <textarea name='review_text'></textarea>
+        <input type="submit" value="제출">
+    </form>
+    {% else %}
+    <a href="{% url 'accounts:login' %}">추가하려면 로그인하세요.</a>
+    {% endif %}
+</body>
+</html>
